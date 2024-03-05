@@ -1,0 +1,18 @@
+version: "3.8"
+
+services:
+  database:
+    image: mysql
+    container_name: fdata
+    command: --init-file /data/application/init.sql
+    restart: always
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+    ports:
+      - "3330:3306"
+    volumes:
+      - ./init.sql:/data/application/init.sql
+      - mysqldata:/var/lib/mysql
+
+volumes:
+  mysqldata:
